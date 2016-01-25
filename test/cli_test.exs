@@ -9,4 +9,8 @@ defmodule CLITest do
     assert parse_args(["-h", "foo"]) == :help
   end
 
+  test "One value is returned if one is give" do
+  	assert parse_args(["lorem ipsum"]) == {"lorem ipsum"}
+  end
+
 end
