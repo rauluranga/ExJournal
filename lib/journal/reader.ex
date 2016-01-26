@@ -29,12 +29,6 @@ defmodule Journal.Reader do
 
   end
 
-  def date_from_timestamp(timestamp) do
-    timestamp 
-      |> Date.from(:secs)
-      |> DateConvert.to_erlang_datetime
-  end
-
   #{ 1453507200, "/vagrant/journal/.journal/1453593600.txt" }
   def yesterday_filter({timestamp, _ }) do
     
