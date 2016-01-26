@@ -5,6 +5,7 @@ defmodule Journal.Mixfile do
     [app: :journal,
      version: "0.0.1",
      elixir: "~> 1.1",
+     escript: escript_config,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps]
@@ -17,6 +18,9 @@ defmodule Journal.Mixfile do
     [applications: [:logger, :tzdata]]
   end
 
+  def escript_config do
+   [main_module: Journal.CLI]
+  end
   # Dependencies can be Hex packages:
   #
   #   {:mydep, "~> 0.3.0"}
@@ -29,6 +33,7 @@ defmodule Journal.Mixfile do
   defp deps do
     [
       {:timex, "~> 1.0.0"}, 
+      {:tzdata, "== 0.1.8", override: true},
       {:dir_walker, "~> 0.0.6"}
     ]
   end
