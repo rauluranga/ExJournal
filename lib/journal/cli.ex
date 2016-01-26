@@ -25,11 +25,12 @@ defmodule Journal.CLI do
 	end
 
 	def process(:today) do
-		IO.inspect Journal.Reader.today
-	end
+          IO.inspect Journal.Reader.today
+        end
 
 	def process(:yesterday) do
-		IO.inspect Journal.Reader.yesterday
+          Journal.Reader.yesterday  
+            |> Journal.Formatter.print_table
 	end
 
 	def process({ message }) do
