@@ -21,7 +21,7 @@ defmodule ExJournal.Reader do
       |> Enum.to_list
   end
   
-  #.DS_Store files breaks the whole thing!
+  #.DS_Store or any other files breaks the whole thing!
   def parse_path (path) do
   
     file_name = Path.basename(path, ".txt")

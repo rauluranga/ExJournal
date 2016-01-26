@@ -5,6 +5,9 @@ defmodule ExJournal.Mixfile do
     [app: :exjournal,
      version: "0.0.1",
      elixir: "~> 1.1",
+     name: "ExJournal",
+     source_url: "https://github.com/rauluranga/exjournal",
+     homepage_url: "https://github.com/rauluranga/exjournal",
      escript: escript_config,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -34,7 +37,9 @@ defmodule ExJournal.Mixfile do
     [
       {:timex, "~> 1.0.0"}, 
       {:tzdata, "== 0.1.8", override: true},
-      {:dir_walker, "~> 0.0.6"}
+      {:dir_walker, "~> 0.0.6"},
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.11", only: :dev}
     ]
   end
 end
