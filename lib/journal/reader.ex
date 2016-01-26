@@ -8,7 +8,7 @@ defmodule Journal.Reader do
   def yesterday() do
     paths = DirWalker.stream(@base_path)
       |> Stream.map(&parse_path/1)
-      |> Stream.filter(&filter_yesterday/1)
+      |> Stream.filter(&yesterday_filter/1)
       |> Enum.to_list
   end
   
@@ -17,16 +17,11 @@ defmodule Journal.Reader do
   def parse_path (path) do
   
     file_name = Path.basename(path, ".txt")
-    
     unix_tuple =  Integer.parse(file_name)
-
-    #IO.puts "file_name: #{file_name}"
-    #IO.inspect unix_tuple
-
     unix_date = elem(unix_tuple, 0)
-    erlang_date = date_from_timestamp(unix_date)
-  
-    {erlang_date, path}
+    {unix_date, path}
+    #erlang_date = date_from_timestamp(unix_date)
+    #{erlang_date, path}
 
   end
 
@@ -36,11 +31,15 @@ defmodule Journal.Reader do
       |> DateConvert.to_erlang_datetime
   end
 
-  #{{{2016, 1, 24}, {0, 0, 0}}, "/vagrant/journal/.journal/1453593600.txt"}
+  #{ 1453507200, "/vagrant/journal/.journal/1453593600.txt" }
+  def yesterday_filter({timestamp, _ }) do
+    
+    beginning_of_day = Date.now |> Date.beginning_of_day
+    yesterday = beginning_of_day |> Date.subtract(Time.to_timestamp(1, :days))
+    file_date = Date.from(timestamp, :secs)
+
+    file_date >= yesterday && file_date < beginning_of_day
   
-  def filter_yesterday({{{year,month,day},_},_}) do
-    year == 2016 && month == 1 && day == 24  
-    #match?({year, month, day}, {2016, 1, 24})
   end
 
 end
