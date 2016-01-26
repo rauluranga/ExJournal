@@ -7,9 +7,11 @@ defmodule Journal.CLI do
 	end
 
 	def parse_args(argv) do
-		parse = OptionParser.parse(argv, switches: [help: :boolean], aliases: [ h: :help])
+		parse = OptionParser.parse(argv, switches: [help: :boolean, from: :string], aliases: [ h: :help, f: :from])
 		case parse do
 		  { [help: true], _, _ } -> :help
+		  { [from: "today"], _, _ } -> :today
+		  { [from: "yesterday"], _, _ } -> :yesterday
 		  { _, [message], _ } -> { message }
 		  _ -> :help
 		end
@@ -20,6 +22,14 @@ defmodule Journal.CLI do
 			usage: journal <message>
 		"""
 		System.halt(0)
+	end
+
+	def process(:today) do
+		IO.inspect Journal.Reader.today
+	end
+
+	def process(:yesterday) do
+		IO.inspect Journal.Reader.yesterday
 	end
 
 	def process({ message }) do
