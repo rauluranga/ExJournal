@@ -25,8 +25,9 @@ defmodule Journal.CLI do
 	end
 
 	def process(:today) do
-          IO.inspect Journal.Reader.today
-        end
+        Journal.Reader.today
+          |> Journal.Formatter.print_table
+    end
 
 	def process(:yesterday) do
           Journal.Reader.yesterday  
