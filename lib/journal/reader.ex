@@ -11,17 +11,21 @@ defmodule Journal.Reader do
       |> Stream.filter(&yesterday_filter/1)
       |> Enum.to_list
   end
+
+  def today() do
+    paths = DirWalker.stream(@base_path)
+      |> Stream.map(&parse_path/1)
+      |> Stream.filter(&today_filter/1)
+      |> Enum.to_list
+  end
   
   #.DS_Store files breaks the whole thing!
-
   def parse_path (path) do
   
     file_name = Path.basename(path, ".txt")
     unix_tuple =  Integer.parse(file_name)
     unix_date = elem(unix_tuple, 0)
     {unix_date, path}
-    #erlang_date = date_from_timestamp(unix_date)
-    #{erlang_date, path}
 
   end
 
@@ -41,6 +45,16 @@ defmodule Journal.Reader do
     file_date >= yesterday && file_date < beginning_of_day
   
   end
+
+  def today_filter({timestamp, _ }) do
+    
+    beginning_of_day = Date.now |> Date.beginning_of_day
+    file_date = Date.from(timestamp, :secs)
+
+    file_date >= beginning_of_day
+  
+  end
+
 
 end
 
