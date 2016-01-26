@@ -3,7 +3,7 @@ defmodule Journal.Writter do
     use Timex
 	require Logger
 	
-	@base_path Path.expand("~/.journal") 
+	@base_path Path.expand("/vagrant/journal/.journal")
 
 	def save(message) do
 
