@@ -3,7 +3,7 @@ defmodule Journal.Writter do
     use Timex
 	require Logger
 	
-	@base_path Path.expand("/vagrant/journal/.journal")
+	@base_path @base_path Application.get_env(:journal, :base_path)
 
 	def save(message) do
 
@@ -26,7 +26,7 @@ defmodule Journal.Writter do
 		{:ok, file_path}
 	end
 
-	defp handle_response({:error, _}, file_path) do
+	defp handle_response({:error, _}, _) do
 		{:error, "a component of the file name does not exist or is not a directory"}
 	end
 

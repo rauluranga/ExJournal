@@ -3,7 +3,7 @@ defmodule Journal.Reader do
   use Timex
   require Logger
 
-  @base_path Path.expand("/vagrant/journal/.journal")
+  @base_path Application.get_env(:journal, :base_path)
  
   def yesterday() do
     DirWalker.stream(@base_path)

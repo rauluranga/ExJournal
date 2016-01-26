@@ -11,6 +11,7 @@ use Mix.Config
 # You can configure for your application as:
 #
 #     config :journal, key: :value
+      config :journal, base_path: Path.expand("/vagrant/journal/.journal")
 #
 # And access this configuration in your application as:
 #
