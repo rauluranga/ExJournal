@@ -1,8 +1,8 @@
-defmodule Journal.Mixfile do
+defmodule ExJournal.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :journal,
+    [app: :exjournal,
      version: "0.0.1",
      elixir: "~> 1.1",
      escript: escript_config,
@@ -19,7 +19,7 @@ defmodule Journal.Mixfile do
   end
 
   def escript_config do
-   [main_module: Journal.CLI]
+   [main_module: ExJournal.CLI]
   end
   # Dependencies can be Hex packages:
   #

@@ -1,4 +1,4 @@
-defmodule Journal.Formatter do
+defmodule ExJournal.Formatter do
   
   use Timex
 

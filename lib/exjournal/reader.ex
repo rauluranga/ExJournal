@@ -1,9 +1,9 @@
-defmodule Journal.Reader do
+defmodule ExJournal.Reader do
   
   use Timex
   require Logger
 
-  @base_path Application.get_env(:journal, :base_path)
+  @base_path Application.get_env(:exjournal, :base_path)
  
   def yesterday() do
     DirWalker.stream(@base_path)
@@ -30,7 +30,7 @@ defmodule Journal.Reader do
 
   end
 
-  #{ 1453507200, "/vagrant/journal/.journal/1453593600.txt" }
+  #{ 1453507200, "/vagrant/exjournal/.exjournal/1453593600.txt" }
   def yesterday_filter({timestamp, _ }) do
     
     beginning_of_day = Date.now |> Date.beginning_of_day

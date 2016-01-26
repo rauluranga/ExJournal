@@ -1,0 +1,2 @@
+defmodule ExJournal do
+end

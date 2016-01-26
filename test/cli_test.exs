@@ -1,8 +1,8 @@
 defmodule CLITest do
   use ExUnit.Case
-  doctest Journal
+  doctest ExJournal
 
-  import Journal.CLI, only: [ parse_args: 1 ]
+  import ExJournal.CLI, only: [ parse_args: 1 ]
 
   test ":help returned by parsing -h and --help options" do
     assert parse_args(["--help", "foo"]) == :help

@@ -7,3 +7,4 @@ erl_crash.dump
 .journal
 *.swp
 journal
+exjournal

@@ -1,9 +1,9 @@
-defmodule Journal.Writter do
+defmodule ExJournal.Writter do
     
     use Timex
 	require Logger
 	
-	@base_path @base_path Application.get_env(:journal, :base_path)
+	@base_path Application.get_env(:exjournal, :base_path)
 
 	def save(message) do
 

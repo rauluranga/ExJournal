@@ -1,4 +1,4 @@
-defmodule Journal.CLI do
+defmodule ExJournal.CLI do
 
 	def main(argv) do
 		argv 
@@ -19,23 +19,23 @@ defmodule Journal.CLI do
 
 	def process(:help) do
 		IO.puts """
-			usage: journal <message>
+			usage: exjournal <message>
 		"""
 		System.halt(0)
 	end
 
 	def process(:today) do
-        Journal.Reader.today
-          |> Journal.Formatter.print_table
+        ExJournal.Reader.today
+          |> ExJournal.Formatter.print_table
     end
 
 	def process(:yesterday) do
-          Journal.Reader.yesterday  
-            |> Journal.Formatter.print_table
+          ExJournal.Reader.yesterday  
+            |> ExJournal.Formatter.print_table
 	end
 
 	def process({ message }) do
-		Journal.Writter.save(message)
+		ExJournal.Writter.save(message)
 			|> proccess_file
 	end
 
