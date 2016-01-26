@@ -6,14 +6,15 @@ defmodule Journal.Reader do
   @base_path Path.expand("/vagrant/journal/.journal")
  
   def yesterday() do
-    paths = DirWalker.stream(@base_path)
+    DirWalker.stream(@base_path)
       |> Stream.map(&parse_path/1)
       |> Stream.filter(&yesterday_filter/1)
+      |> Stream.map(&read_file_contents/1)
       |> Enum.to_list
   end
 
   def today() do
-    paths = DirWalker.stream(@base_path)
+    DirWalker.stream(@base_path)
       |> Stream.map(&parse_path/1)
       |> Stream.filter(&today_filter/1)
       |> Enum.to_list
@@ -48,6 +49,11 @@ defmodule Journal.Reader do
     file_date >= beginning_of_day
   
   end
+
+  def read_file_contents({timestamp, filepath}) do
+    {timestamp, File.read!(filepath)}
+  end
+
 
 
 end
