@@ -17,6 +17,7 @@ defmodule ExJournal.Reader do
     DirWalker.stream(@base_path)
       |> Stream.map(&parse_path/1)
       |> Stream.filter(&today_filter/1)
+      |> Stream.map(&read_file_contents/1)
       |> Enum.to_list
   end
   
