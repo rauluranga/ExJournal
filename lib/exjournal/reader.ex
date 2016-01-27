@@ -7,6 +7,7 @@ defmodule ExJournal.Reader do
  
   def yesterday() do
 
+    # FIX: This code should be on a guard clause? 
     if !File.exists?(@base_path) do
       File.mkdir(@base_path)
     end
@@ -20,6 +21,7 @@ defmodule ExJournal.Reader do
 
   def today() do
 
+    # FIX: This code should be on a guard clause? 
     if !File.exists?(@base_path) do
       File.mkdir(@base_path)
     end
@@ -32,6 +34,8 @@ defmodule ExJournal.Reader do
   end
   
   #.DS_Store or any other files breaks the whole thing!
+  # returns:
+  # #{ 1453507200, "/vagrant/exjournal/.exjournal/1453593600.txt" }
   def parse_path (path) do
   
     file_name = Path.basename(path, ".txt")
@@ -41,7 +45,7 @@ defmodule ExJournal.Reader do
 
   end
 
-  #{ 1453507200, "/vagrant/exjournal/.exjournal/1453593600.txt" }
+  
   def yesterday_filter({timestamp, _ }) do
     
     beginning_of_day = Date.now |> Date.beginning_of_day

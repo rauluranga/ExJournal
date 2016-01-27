@@ -7,6 +7,7 @@ defmodule ExJournal.Writter do
 
 	def save(message) do
 
+		# FIX: This code should be on a guard clause? 
 	   	if !File.exists?(@base_path) do
 	   	  File.mkdir(@base_path)
 	   	end
