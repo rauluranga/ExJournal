@@ -6,6 +6,11 @@ defmodule ExJournal.Reader do
   @base_path Application.get_env(:exjournal, :base_path)
  
   def yesterday() do
+
+    if !File.exists?(@base_path) do
+      File.mkdir(@base_path)
+    end
+
     DirWalker.stream(@base_path)
       |> Stream.map(&parse_path/1)
       |> Stream.filter(&yesterday_filter/1)
@@ -14,6 +19,11 @@ defmodule ExJournal.Reader do
   end
 
   def today() do
+
+    if !File.exists?(@base_path) do
+      File.mkdir(@base_path)
+    end
+
     DirWalker.stream(@base_path)
       |> Stream.map(&parse_path/1)
       |> Stream.filter(&today_filter/1)
