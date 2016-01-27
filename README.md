@@ -1,19 +1,20 @@
-# exjournal
+# ExJournal
 
-**TODO: Add description**
+A simple journal written in Elixir used for learning purposes.
 
-## Installation
+#Usage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+just write:
 
-  1. Add exjournal to your list of dependencies in `mix.exs`:
+```bash
+$ exjournal "Hello World"
+```
 
-        def deps do
-          [{:exjournal, "~> 0.0.1"}]
-        end
+and a ~/.exjournal/[timestamp].txt will be created with your entry appended to that file.
 
-  2. Ensure exjournal is started before your application:
+You can view previuos entries with the following API:
 
-        def application do
-          [applications: [:exjournal]]
-        end
+```bash
+$ exjournal --from today
+$ exjournal --from yesterday
+```
